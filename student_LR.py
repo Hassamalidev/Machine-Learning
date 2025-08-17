@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pickle
 from matplotlib import style
 from sklearn.utils import shuffle
-data=pd.read_csv("student-mat.csv", sep=";")
+data=pd.read_csv("linear_regression/student-mat.csv", sep=";")
 # print(data.columns.tolist(), data.dtypes)
 data=data[['G1','G2','G3','studytime','failures','absences', "age", "traveltime", "freetime","health" ]]
 
@@ -15,7 +15,7 @@ X=np.array(data.drop([predict],axis=1))
 Y=np.array(data[predict])
 x_train,x_test,y_train,y_test=sklearn.model_selection.train_test_split(X,Y, test_size=0.1)
 try:
-    pickle_in =open("student.pickle", "rb")
+    pickle_in =open("linear_regression/student.pickle", "rb")
     linear=pickle.load(pickle_in)
 except:
     best=0
@@ -27,7 +27,7 @@ except:
         print(acc)
         if acc>best:
             acc=best
-            with open("student.pickle", "wb") as f:
+            with open("linear_regression/student.pickle", "wb") as f:
                 pickle.dump(linear, f)
 
 
